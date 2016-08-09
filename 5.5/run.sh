@@ -6,6 +6,7 @@ set -e
 VOLUME_HOME="/var/lib/mysql"
 CONF_FILE="/etc/mysql/conf.d/my.cnf"
 LOG="/var/log/mysql/error.log"
+IMPORT_OPTIONS=$1
 
 # Set permission of config file
 chmod 644 ${CONF_FILE}
@@ -67,9 +68,9 @@ ImportSql()
     for FILE in ${STARTUP_SQL}; do
         echo "=> Importing SQL file ${FILE}"
         if [ "$ON_CREATE_DB" ]; then
-            mysql -uroot "$ON_CREATE_DB" < "${FILE}"
+            mysql -uroot $IMPORT_OPTIONS "$ON_CREATE_DB" < "${FILE}"
         else
-            mysql -uroot < "${FILE}"
+            mysql -uroot $IMPORT_OPTIONS < "${FILE}"
         fi
     done
 }
