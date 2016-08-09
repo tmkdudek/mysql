@@ -68,9 +68,9 @@ ImportSql()
     for FILE in ${STARTUP_SQL}; do
         echo "=> Importing SQL file ${FILE}"
         if [ "$ON_CREATE_DB" ]; then
-            mysql -uroot ${printenv IMPORT_OPTS} "$ON_CREATE_DB" < "${FILE}"
+            mysql -uroot $(printenv IMPORT_OPTS) "$ON_CREATE_DB" < "${FILE}"
         else
-            mysql -uroot ${printenv IMPORT_OPTS} < "${FILE}"
+            mysql -uroot $(printenv IMPORT_OPTS) < "${FILE}"
         fi
     done
 }
