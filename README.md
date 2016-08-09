@@ -142,6 +142,11 @@ Also, you can start the new database initializing it with the SQL file:
 
         sudo docker run -d -v /path/in/host:/var/lib/mysql -e STARTUP_SQL="/tmp/<dump.sql>" tutum/mysql
 
+You can pass additional parameters to mysql import by setting IMPORT_OPTS env.
+E.g --force to ommit import errors as below:
+
+        sudo docker run -d -v /path/in/host:/var/lib/mysql -e STARTUP_SQL="/tmp/<dump.sql>" -e IMPORT_OPTS=--force tutum/mysql
+
 Where `<user>` and `<pass>` are the database username and password set earlier and `<dump.sql>` is the name of the SQL file to be imported.
 
 
